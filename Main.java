@@ -21,14 +21,30 @@ public class Main {
 
             switch (opcion) {
                 case "1":
-                    System.out.print("Título: ");
-                    String titulo = scanner.nextLine();
-                    System.out.print("Contenido: ");
-                    String contenido = scanner.nextLine();
-                    System.out.print("¿Es importante? (s/n): ");
-                    String imp = scanner.nextLine();
+                    String titulo = "";
+                    while (titulo.trim().isEmpty()) {
+                        System.out.print("Título (obligatorio): ");
+                        titulo = scanner.nextLine();
+                        if (titulo.trim().isEmpty())
+                            System.out.println("El título no puede estar vacío.");
+                    }
+
+                    String contenido = "";
+                    while (contenido.trim().isEmpty()) {
+                        System.out.print("Contenido (obligatorio): ");
+                        contenido = scanner.nextLine();
+                        if (contenido.trim().isEmpty())
+                            System.out.println("El contenido no puede estar vacío.");
+                    }
+
+                    String imp = "";
+                    while (!imp.equalsIgnoreCase("s") && !imp.equalsIgnoreCase("n")) {
+                        System.out.print("¿Es importante? (s/n): ");
+                        imp = scanner.nextLine();
+                    }
                     boolean importante = imp.equalsIgnoreCase("s");
                     gestor.crearNota(titulo, contenido, importante);
+
 
                     break;
                 case "2":
